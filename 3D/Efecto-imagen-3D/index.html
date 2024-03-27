@@ -1,0 +1,183 @@
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de carga de modelo en Three.js</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/build/three.module.js';
+        import { GLTFLoader } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
+
+        const renderizador = new THREE.WebGLRenderer();
+        renderizador.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderizador.domElement);
+
+        const escena = new THREE.Scene();
+        escena.background = new THREE.Color(0xeeeeee);
+
+        const camara = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camara.position.z = 5;
+
+        window.addEventListener('resize', () => {
+            camara.aspect = window.innerWidth / window.innerHeight;
+            camara.updateProjectionMatrix();
+            renderizador.setSize(window.innerWidth, window.innerHeight);
+
+            // Ajustar la posición de modelo2 en función del tamaño de la ventana
+            if (modelo2) {
+                if (window.innerWidth < 800) {
+                    modelo2.position.x = -0.1;
+                    modelo2.scale.set(0.6, 0.6, 0.6); 
+                } else {
+                    modelo2.position.x = 2;
+                    modelo2.scale.set(0.9, 0.9, 0.9); 
+                }
+            }
+        });
+
+        const luz = new THREE.DirectionalLight(0xffffff, 1);
+        luz.position.set(5, 5, 5).normalize();
+        escena.add(luz);
+
+        const loader = new GLTFLoader();
+        const loader2 = new GLTFLoader();
+
+        let modelo;
+        let modelo2;
+
+        loader.load('eclipse.glb', function (gltf) {
+            modelo = gltf.scene;
+           
+            escena.add(modelo);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+
+        loader2.load('rotacion.glb', function (gltf2) {
+            modelo2 = gltf2.scene;
+            modelo2.position.x = -0.1;  // Ajusta la posición en el eje X si es necesario
+            modelo2.scale.set(0.6, 0.6, 0.6);  // Ajusta la escala del modelo2
+            escena.add(modelo2);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+
+        const animar = function () {
+            requestAnimationFrame(animar);
+
+            if (modelo) {
+                modelo.rotation.x += 0.001;
+                modelo.rotation.y += 0.001;
+            }
+
+            if (modelo2) {
+                modelo2.rotation.y += 0.002;
+            }
+
+            renderizador.render(escena, camara);
+        };
+
+        animar();
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de carga de modelo en Three.js</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/build/three.module.js';
+        import { GLTFLoader } from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
+
+        const renderizador = new THREE.WebGLRenderer();
+        renderizador.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderizador.domElement);
+
+        const escena = new THREE.Scene();
+        escena.background = new THREE.Color(0xeeeeee);
+
+        const camara = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camara.position.z = 5;
+
+        window.addEventListener('resize', () => {
+            camara.aspect = window.innerWidth / window.innerHeight;
+            camara.updateProjectionMatrix();
+            renderizador.setSize(window.innerWidth, window.innerHeight);
+
+            // Ajustar la posición y escala de modelo2 en función del tamaño de la ventana
+            if (modelo2) {
+                if (window.innerWidth < 500) {
+                    modelo2.position.x = 0.1;
+                    modelo2.scale.set(0.6, 0.6, 0.6);
+                } else {
+                    modelo2.position.x = 2;
+                    modelo2.scale.set(1.5, 1.5, 1.5);
+                }
+            }
+        });
+
+        const luz = new THREE.DirectionalLight(0xffffff, 1);
+        luz.position.set(5, 5, 5).normalize();
+        escena.add(luz);
+
+        const loader = new GLTFLoader();
+        const loader2 = new GLTFLoader();
+
+        let modelo;
+        let modelo2;
+
+        loader.load('eclipse.glb', function (gltf) {
+            modelo = gltf.scene;
+            escena.add(modelo);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+
+        loader2.load('plan.glb', function (gltf2) {
+            modelo2 = gltf2.scene;
+            modelo2.position.x = -0.1;
+            modelo2.scale.set(0.6, 0.6, 0.6);
+            escena.add(modelo2);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+
+        const animar = function () {
+            requestAnimationFrame(animar);
+
+            if (modelo) {
+                modelo.rotation.x += 0.001;
+                modelo.rotation.y += 0.001;
+            }
+
+            if (modelo2) {
+                modelo2.rotation.y += 0.002;
+            }
+
+            renderizador.render(escena, camara);
+        };
+
+        animar();
+    </script>
+</body>
+</html>

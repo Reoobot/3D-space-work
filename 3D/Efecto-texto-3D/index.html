@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Texto en Three.js</title>
+    <style>
+        body { margin: 0; }
+    </style>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/build/three.module.js';
+
+        // Función para cargar la fuente de manera asíncrona
+        function loadFont(url) {
+            return new Promise((resolve, reject) => {
+                const fontLoader = new THREE.FontLoader();
+                fontLoader.load(url, resolve, undefined, reject);
+            });
+        }
+
+        // Crear la escena
+        const escena = new THREE.Scene();
+        escena.background = new THREE.Color(0xeeeeee);
+
+        // Crear la cámara
+        const camara = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camara.position.z = 5;
+
+        // Crear el renderizador
+        const renderizador = new THREE.WebGLRenderer();
+        renderizador.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderizador.domElement);
+
+        // Cargar la fuente de manera asíncrona
+        loadFont('droid_sans_bold.typeface.json')
+            .then(font => {
+                // Crear la geometría del texto
+                const geometriaDeTexto = new THREE.TextGeometry('¡Hola, Freddy Alexis', {
+                    font: font,
+                    size: 0.2,
+                    height: 0.1,
+                    curveSegments: 12,
+                    bevelEnabled: true,
+                    bevelThickness: 0.03,
+                    bevelSize: 0.02,
+                    bevelOffset: 0,
+                    bevelSegments: 5
+                });
+
+                // Centrar el texto
+                geometriaDeTexto.center();
+
+                // Crear el material del texto
+                const materialDeTexto = new THREE.MeshBasicMaterial({ color: "#20214F" });
+
+                // Crear la malla de texto
+                const mallaDeTexto = new THREE.Mesh(geometriaDeTexto, materialDeTexto);
+                escena.add(mallaDeTexto);
+
+                // Establecer la posición inicial del texto
+                mallaDeTexto.position.set(0, 0, 0);
+
+                // Animación
+                const animar = function (tiempo) {
+                    requestAnimationFrame(animar);
+
+                    // Alejar la cámara para lograr el efecto de zoom out
+                    camara.position.z -= 0.01;
+
+                    // Reiniciar la animación cuando la cámara está lo suficientemente lejos
+                    if (camara.position.z < 2) {
+                        camara.position.z = 10;  // Restaurar la posición original de la cámara
+                    }
+
+                    // Renderizar la escena
+                    renderizador.render(escena, camara);
+                };
+
+                // Iniciar la animación
+                animar();
+            })
+            .catch(error => {
+                console.error('Error al cargar la fuente:', error);
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Garaje Code Pills | Three.js environment maps</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/240474/OrbitControls.js"></script>
+    <script src="./src/app.js"></script>
+</body>
+
+</html> -->
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html lang="es" style="height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Rehobot 97.7 FM</title>
+    <style>
+ body {
+    background: linear-gradient(to bottom, #1a1a2e, #563d7c);
+    margin: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Agregado para centrar en dispositivos móviles */
+}
+
+
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        section {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+ audio {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        @media (max-width: 600px) {
+    audio {
+        max-width: 90%; /* Ajusta el tamaño máximo para pantallas más pequeñas */
+    }
+}
+
+        button {
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Añade una sombra brillante */
+        }
+
+        /* Estilos para la nieve */
+.snowflake {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: snowfall linear infinite;
+}
+
+/* Animación de la nieve */
+@keyframes snowfall {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Bienvenido a Radio Rehobot 97.7 FM</h1>
+    </header>
+
+    <main>
+        <p>Esta es tu radio dedicada a la música cristiana y la edificación espiritual.</p>
+        <p>¡Sintoniza para disfrutar de música que eleva el alma y edifica tu espíritu!</p>
+    </main>
+
+    <section>
+        <h2>Reproductor de Audio</h2>
+        <audio controls>
+              <source src="http://35.185.202.79:8000/musica.ogg" type="audio/mpeg">
+            Tu navegador no soporta la etiqueta de audio.
+        </audio>
+    </section>
+
+    <section>
+        <a href="https://radio2x2.vercel.app/">
+            <button type="button">Inicio a Rehobot</button>
+        </a>
+    </section>
+    <script>
+        // Variable para rastrear si se debe generar nieve o no
+        let isSnowfallActive = true;
+    
+        // Función para crear nieve
+        function createSnowflake() {
+            if (!isSnowfallActive) {
+                return; // No genera más copos de nieve si isSnowfallActive es falso
+            }
+    
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+    
+            // Posición y tamaño aleatorio
+            const leftPosition = Math.random() * window.innerWidth;
+            const topPosition = Math.random() * window.innerHeight * 0.5; // Ajusta el 0.5 según la posición deseada
+    
+            const animationDuration = Math.random() * 3 + 2; // Entre 2 y 5 segundos
+    
+            snowflake.style.left = `${leftPosition}px`;
+            snowflake.style.top = `${topPosition}px`;
+            snowflake.style.animationDuration = `${animationDuration}s`;
+    
+            document.body.appendChild(snowflake);
+    
+            // Eliminar nieve después de la animación
+            snowflake.addEventListener('animationend', () => {
+                snowflake.remove();
+            });
+        }
+    
+        // Generar nieve cada segundo
+        setInterval(createSnowflake, 1000);
+    
+        // Detener la generación de nieve cuando el usuario hace scroll
+        window.addEventListener('scroll', () => {
+            isSnowfallActive = false;
+        });
+    </script>
+    
+    
+
+</body>
+
+</html> -->
